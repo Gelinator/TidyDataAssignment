@@ -4,17 +4,14 @@ The following file contains description of the variables, the data, and all tran
 
 ##  Package Dependencies
     plyr
+Must be installed prior to running the code.
 
 ##  Parameters
 
-* Loading the code
-        source("run_analysis")
-* Running the code
-        run_analysis(wd)
-        where  wd = path to working directory with "UCI HAR Dataset" as default
+    wd  =  path to working directory. "UCI HAR Dataset" as default
 
 ##  Variables Description
-### Largely inspired by `features_info.txt`
+#### Largely inspired by `features_info.txt`
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
@@ -52,5 +49,7 @@ As previously mentioned in README.md, the zipped data must first be downloaded t
 This way, the `run_analysis.R` will run by itself once executed. Else, simply pass the file path as argument to the code.
 
 ## Labeling Activities
+
+
 
 ### Sticking the Data Together
