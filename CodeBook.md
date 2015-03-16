@@ -73,23 +73,43 @@ The program will load the text files in three separate steps, which can be summe
         subject_test <- read.table("subject_train.txt")
     Loads the X, Y and Subject train datasets and saves them accordingly.
 
+### Getting the “Mean“ and “Standard Deviations” Columns
+Using regular expressions, a list of columns containing the mean or standard deviation of any variable is built.
+This list will be used later on to specify the `ddply` function for which column to calculate the mean.
+
+        feat_list <- c(grep("-mean",features$V2),grep("-std",features$V2))
+
+
 ### Sticking the Data Together
 To build a complete data frame object containing all the train and test data, a combination of row bind (`rbind()`) and column bind (`cbind()`) were used.
 
+Combining the `train` and `test` datasets on top of each other. `binding` labeled objects are the result of 
         xbinding <- rbind(xtrain,xtest)
         ybinding <- rbind(ytrain,ytest)
-        
-
         subjectbinding <- rbind(subject_train,subject_test)
-        
+
+Setting the column names to their respective variable
         xbinding <- setNames(xbinding,features$V2)
         ybinding <- setNames(ybinding,"Activity")
-
-
         subjectbinding <- setNames(subjectbinding,"Subject")
-
 
 ### Labeling Activities
 
 This step happens right after the creation of the `ybinding` object to avoid redundancy. It replaces all the activity codes in `ybinding` by their corresponding activity label.
+        
         ybinding[, 1] <- activity[ybinding[, 1], 2]
+        
+### Bringing it all together
+
+This step brings the three newly created datasets and combines them in one single object to be later used. The `cbind()` function is used as all the datasets are of equal length.
+
+        full_binding <- cbind(xbinding,subjectbinding,ybinding)
+
+## Where the Magic Happens
+Using the `ddply` function from the `plyr` package, the object containing all the data (`full_binding`) is summarized by Subject and Activity respectively.
+Afterwards, for each Subject/Activity pair, the mean of variables specified by `feat_list` is calculated.
+        wrap <- ddply(full_binding,.(Subject,Activity),function(x) colMeans(x[,feat_list]))
+        
+## Creating the file
+The text file is finally written to the folder specified by `wd` using `write.table()`.
+        write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
