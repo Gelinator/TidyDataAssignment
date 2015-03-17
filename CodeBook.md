@@ -87,11 +87,13 @@ This list will be used later on to specify the `ddply` function for which column
 To build a complete data frame object containing all the train and test data, a combination of row bind (`rbind()`) and column bind (`cbind()`) were used.
 
 Combining the `train` and `test` datasets on top of each other. `binding` labeled objects are the result of 
+    
     xbinding <- rbind(xtrain,xtest)
     ybinding <- rbind(ytrain,ytest)
     subjectbinding <- rbind(subject_train,subject_test)
 
 Setting the column names to their respective variable
+    
     xbinding <- setNames(xbinding,features$V2)
     ybinding <- setNames(ybinding,"Activity")
     subjectbinding <- setNames(subjectbinding,"Subject")
@@ -111,8 +113,10 @@ This step brings the three newly created datasets and combines them in one singl
 ## Where the Magic Happens
 Using the `ddply` function from the `plyr` package, the object containing all the data (`full_binding`) is summarized by Subject and Activity respectively.
 Afterwards, for each Subject/Activity pair, the mean of variables specified by `feat_list` is calculated.
+        
     wrap <- ddply(full_binding,.(Subject,Activity),function(x) colMeans(x[,feat_list]))
         
 ## Creating the file
 The text file is finally written to the folder specified by `wd` using `write.table()`. The file will be named `mean&std_summary.txt`
+    
     write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
