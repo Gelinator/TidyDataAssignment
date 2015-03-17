@@ -11,7 +11,8 @@ Must be installed prior to running the code.
     wd  =  path to working directory. "UCI HAR Dataset" as default
 
 ##  Variables Description
-### Largely inspired by `features_info.txt`
+
+    Largely inspired by `features_info.txt`
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
@@ -86,7 +87,7 @@ This list will be used later on to specify the `ddply` function for which column
 ### Sticking the Data Together
 To build a complete data frame object containing all the train and test data, a combination of row bind (`rbind()`) and column bind (`cbind()`) were used.
 
-Combining the `train` and `test` datasets on top of each other. `binding` labeled objects are the result of 
+Combining the `train` and `test` datasets on top of each other. `binding` labeled objects are the result of this combination
     
     xbinding <- rbind(xtrain,xtest)
     ybinding <- rbind(ytrain,ytest)
