@@ -59,7 +59,6 @@ The program will load the text files in three separate steps, which can be summe
 
         activity <- read.table("activity_labels.txt")
         features <- read.table("features.txt")
-
 Loads the Activity labels and stores them in object `activity`
 Loads the features labels and stores them in object `features`
 
@@ -68,7 +67,6 @@ Loads the features labels and stores them in object `features`
         xtest <- read.table("X_test.txt")
         ytest <- read.table("y_test.txt")
         subject_test <- read.table("subject_test.txt")
-
 Loads the X, Y and Subject test datasets and saves them accordingly.
 
 * train folder
@@ -89,9 +87,9 @@ This list will be used later on to specify the `ddply` function for which column
 To build a complete data frame object containing all the train and test data, a combination of row bind (`rbind()`) and column bind (`cbind()`) were used.
 
 Combining the `train` and `test` datasets on top of each other. `binding` labeled objects are the result of 
-        xbinding <- rbind(xtrain,xtest)
-        ybinding <- rbind(ytrain,ytest)
-        subjectbinding <- rbind(subject_train,subject_test)
+    xbinding <- rbind(xtrain,xtest)
+    ybinding <- rbind(ytrain,ytest)
+    subjectbinding <- rbind(subject_train,subject_test)
 
 Setting the column names to their respective variable
         xbinding <- setNames(xbinding,features$V2)
