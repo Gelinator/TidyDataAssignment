@@ -1,5 +1,3 @@
-# "/Users/davegelinas/Documents/MOOCs/Data Science/Getting and Cleaning data/Course project/UCI HAR Dataset"
-
 run_analysis <- function(wd="UCI HAR Dataset"){ #Path to UCI HAR Dataset folder
         library(plyr) #Loading the plyr package
         setwd(wd) #Initial setting of working directory

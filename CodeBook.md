@@ -56,22 +56,27 @@ Navigation through the folder use the `setwd()` function.
 The program will load the text files in three separate steps, which can be summed up by folders in the zipped file.
 
 * UCI HAR Dataset main folder
+
         activity <- read.table("activity_labels.txt")
         features <- read.table("features.txt")
-    Loads the Activity labels and stores them in object `activity`
-    Loads the features labels and stores them in object `features`
+
+Loads the Activity labels and stores them in object `activity`
+Loads the features labels and stores them in object `features`
 
 * test folder
+
         xtest <- read.table("X_test.txt")
         ytest <- read.table("y_test.txt")
         subject_test <- read.table("subject_test.txt")
-    Loads the X, Y and Subject test datasets and saves them accordingly.
+
+Loads the X, Y and Subject test datasets and saves them accordingly.
 
 * train folder
+
         xtrain <- read.table("X_train.txt")
         ytrain <- read.table("y_train.txt")
         subject_test <- read.table("subject_train.txt")
-    Loads the X, Y and Subject train datasets and saves them accordingly.
+Loads the X, Y and Subject train datasets and saves them accordingly.
 
 ### Getting the “Mean“ and “Standard Deviations” Columns
 Using regular expressions, a list of columns containing the mean or standard deviation of any variable is built.
@@ -111,5 +116,5 @@ Afterwards, for each Subject/Activity pair, the mean of variables specified by `
         wrap <- ddply(full_binding,.(Subject,Activity),function(x) colMeans(x[,feat_list]))
         
 ## Creating the file
-The text file is finally written to the folder specified by `wd` using `write.table()`.
-        write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
+The text file is finally written to the folder specified by `wd` using `write.table()`. The file will be named `mean&std_summary.txt`
+       write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
