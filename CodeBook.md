@@ -41,6 +41,9 @@ These signals were used to estimate variables of the feature vector for each pat
 * fBodyGyroMag
 * fBodyGyroJerkMag
 
+### Units
+
+Although no such indication is provided, measurements seem to be in `G`, which is equivalent to 9.81 m/s^2.
 
 ##  Modifications and transformations
 
@@ -101,7 +104,7 @@ Setting the column names to their respective variable
 
 ### Labeling Activities
 
-This step happens right after the creation of the `ybinding` object to avoid redundancy. It replaces all the activity codes in `ybinding` by their corresponding activity label.
+This step happens right after the creation of the `ybinding` object to avoid redundancy. It replaces all the activity codes in `ybinding` by their corresponding activity label. There are 6 such labels, from 1 to 6, with their respective activity name.
         
     ybinding[, 1] <- activity[ybinding[, 1], 2]
         
