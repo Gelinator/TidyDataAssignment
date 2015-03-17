@@ -92,27 +92,27 @@ Combining the `train` and `test` datasets on top of each other. `binding` labele
     subjectbinding <- rbind(subject_train,subject_test)
 
 Setting the column names to their respective variable
-        xbinding <- setNames(xbinding,features$V2)
-        ybinding <- setNames(ybinding,"Activity")
-        subjectbinding <- setNames(subjectbinding,"Subject")
+    xbinding <- setNames(xbinding,features$V2)
+    ybinding <- setNames(ybinding,"Activity")
+    subjectbinding <- setNames(subjectbinding,"Subject")
 
 ### Labeling Activities
 
 This step happens right after the creation of the `ybinding` object to avoid redundancy. It replaces all the activity codes in `ybinding` by their corresponding activity label.
         
-        ybinding[, 1] <- activity[ybinding[, 1], 2]
+    ybinding[, 1] <- activity[ybinding[, 1], 2]
         
 ### Bringing it all together
 
 This step brings the three newly created datasets and combines them in one single object to be later used. The `cbind()` function is used as all the datasets are of equal length.
 
-        full_binding <- cbind(xbinding,subjectbinding,ybinding)
+    full_binding <- cbind(xbinding,subjectbinding,ybinding)
 
 ## Where the Magic Happens
 Using the `ddply` function from the `plyr` package, the object containing all the data (`full_binding`) is summarized by Subject and Activity respectively.
 Afterwards, for each Subject/Activity pair, the mean of variables specified by `feat_list` is calculated.
-        wrap <- ddply(full_binding,.(Subject,Activity),function(x) colMeans(x[,feat_list]))
+    wrap <- ddply(full_binding,.(Subject,Activity),function(x) colMeans(x[,feat_list]))
         
 ## Creating the file
 The text file is finally written to the folder specified by `wd` using `write.table()`. The file will be named `mean&std_summary.txt`
-       write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
+    write.table(wrap, "mean&std_summary.txt",row.name=FALSE)
