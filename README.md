@@ -32,4 +32,4 @@ Otherwise, you can always specify the main folder location containing the data.
 
 ##Understanding the results
 
-The resulting data is, for every subject in the dataset, is summarized by activity. The mean for the various movement meters is then averaged.
+The resulting data is, for every subject in the dataset, is summarized by activity. The mean for the “mean” and “std” labeled column is then averaged.
