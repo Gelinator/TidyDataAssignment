@@ -40,6 +40,8 @@ The resulting data is, for every subject in the dataset, is summarized by activi
 All the computing and programming as been done on the same computer
 
 Platform:
+
     x86_64-apple-darwin13.4.0 (64-bit)
 R version:
+
     3.1.2 (2014-10-31)
